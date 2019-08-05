@@ -1,0 +1,27 @@
+.container{
+  background-color: whitesmoke;
+}
+.table-contacts{
+  border-collapse: separate;
+  border-spacing: 7px 11px;
+}
+button, input{
+  /*//margin: 0 1vw;*/
+  min-width: 70px
+}
+.input-group{
+  min-width: 200px;
+}
+.icon-edit{
+  width: 100px;
+}
+
+@media all and (max-width: 561px) {
+  .input-group input,
+  .input-group button{
+    width: 100%;
+    margin: 0 0 0.5rem 0!important;
+  }
+}
+
+
