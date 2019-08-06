@@ -120,7 +120,7 @@ public class ContactServiceImpl implements ContactService {
     @Transactional(readOnly = true)
     public List <ContactDto> getContactByPhoneNumber(String number) {
         List <PhoneNumber> phoneNumbers = phoneNumberRepository.findAllByPhoneNumber(number)
-                .orElseThrow(() -> new PhoneNumberNotFoundException("Can't find contact by this phone number"));
+                .orElseThrow(() -> new PhoneNumberNotFoundException("Can't find contacts by this phone number"));
 
         List <ContactDto> contacts = new ArrayList <>();
 

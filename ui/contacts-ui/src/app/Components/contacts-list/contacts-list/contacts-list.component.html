@@ -17,27 +17,11 @@
         <th scope="col" class="text-primary">Phone</th>
       </tr>
       </thead>
-      <tbody>
-      <tr>
-        <td>Alla</td>
-        <td>00099998887</td>
-      </tr>
-      <tr>
-        <td>Alla</td>
-        <td>00099998887</td>
-      </tr>
-      <tr>
-        <td>Alla</td>
-        <td>00099998887</td>
-      </tr>
-      <tr>
-        <td>Alla</td>
-        <td>00099998887</td>
-      </tr>
-      <tr>
-        <td>Alla</td>
-        <td>00099998887</td>
-      </tr>
+      <tbody *ngFor="let contact of contacts">
+     <tr>
+       <td>{{contact.fullName}}</td>
+       <td>{{contact.phoneNumbers}}</td>
+     </tr>
       </tbody>
     </table>
   </div>
