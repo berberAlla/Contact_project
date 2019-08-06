@@ -58,7 +58,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "contacts-ui:build"
+            "browserTarget": "contacts-ui:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
