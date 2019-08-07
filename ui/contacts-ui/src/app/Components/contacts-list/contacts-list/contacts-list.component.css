@@ -5,6 +5,10 @@
   border-collapse: separate;
   border-spacing: 7px 11px;
 }
+td{
+  background-color: white;
+  box-shadow: 1vh 1vh 3vh 0 rgba(0,0,0,0.25);
+}
 button, input{
   /*//margin: 0 1vw;*/
   min-width: 70px
