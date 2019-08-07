@@ -14,9 +14,9 @@ public class ContactController {
     @Autowired
     private ContactService contactService;
 
-
     @PostMapping()
     public void createContact(@RequestBody ContactDto contactDto) {
+        System.out.println(contactDto.getEmail());
         contactService.createContact(contactDto);
     }
 
@@ -49,5 +49,4 @@ public class ContactController {
     public List <ContactDto> getContactByPhoneNumber(@RequestParam(value = "phone") String phoneNumber) {
         return contactService.getContactByPhoneNumber(phoneNumber);
     }
-
 }

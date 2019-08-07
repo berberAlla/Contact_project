@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import Contact from "../../Components/contacts-list/model/Contact";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import Contact from "../../Components/shared/contact-detail.model";
+import {ɵStyleData} from "@angular/animations";
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +10,17 @@ export class HttpService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllContacts() {
+  //
+  httpGetContacts() {
     return this.httpClient.get<Contact[]>("api/contact/all");
   }
 
-  // getContactById(){
-  //   return
-  // }
+  httpAddContact(contact){
+
+    debugger;
+    return this.httpClient.post("/api/contact",contact);
+  }
+
+
 
 }
