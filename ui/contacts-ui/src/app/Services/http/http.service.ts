@@ -10,14 +10,11 @@ export class HttpService {
 
   constructor(private httpClient: HttpClient) { }
 
-  //
   httpGetContacts() {
     return this.httpClient.get<Contact[]>("api/contact/all");
   }
 
   httpAddContact(contact){
-
-    debugger;
     return this.httpClient.post("/api/contact",contact);
   }
 
