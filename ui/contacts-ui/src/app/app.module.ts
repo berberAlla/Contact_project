@@ -7,12 +7,14 @@ import {HttpClientModule} from '@angular/common/http';
 import {HttpService} from './Services/http/http.service';
 import { ContactsListComponent } from './Components/contacts-list/contacts-list/contacts-list.component';
 import { ContactDetailsComponent } from './Components/contact-details/contact-details.component';
+import { CreateContactComponent } from './Components/create-contact/create-contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactsListComponent,
-    ContactDetailsComponent
+    ContactDetailsComponent,
+    CreateContactComponent
   ],
   imports: [
     BrowserModule,

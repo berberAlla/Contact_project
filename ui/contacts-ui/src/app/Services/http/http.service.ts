@@ -13,4 +13,8 @@ export class HttpService {
     return this.httpClient.get<Contact[]>("api/contact/all");
   }
 
+  // getContactById(){
+  //   return
+  // }
+
 }
