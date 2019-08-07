@@ -1,25 +1,31 @@
-.container{
+.container {
   background-color: whitesmoke;
 }
-.container-first{
-  box-shadow: 1vh 1vh 3vh 0 rgba(0,0,0,0.25);
+
+.container-first {
+  box-shadow: 1vh 1vh 3vh 0 rgba(0, 0, 0, 0.25);
 }
-.table-contacts{
+
+.table-contacts {
   border-collapse: separate;
   border-spacing: 7px 11px;
 }
-td{
+
+td {
   background-color: white;
-  box-shadow: 1vh 1vh 3vh 0 rgba(0,0,0,0.25);
+  box-shadow: 1vh 1vh 3vh 0 rgba(0, 0, 0, 0.25);
 }
-button, input{
+
+button, input {
   /*//margin: 0 1vw;*/
   min-width: 70px
 }
-.input-group{
+
+.input-group {
   min-width: 200px;
 }
-.icon-edit{
+
+.icon-edit {
   width: 100px;
 }
 
@@ -27,7 +33,10 @@ button, input{
   .input-group input,
   .input-group button{
     width: 100%;
-    margin: 0 0 0.5rem 0!important;
+    margin: 0 1rem 0.5rem 0 !important;
+  }
+  td{
+    padding: 0 0 0.5rem 0 !important;
   }
 }
 
