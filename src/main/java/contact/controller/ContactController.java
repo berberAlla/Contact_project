@@ -16,7 +16,6 @@ public class ContactController {
 
     @PostMapping()
     public void createContact(@RequestBody ContactDto contactDto) {
-        System.out.println(contactDto.getEmail());
         contactService.createContact(contactDto);
     }
 
