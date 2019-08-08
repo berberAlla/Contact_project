@@ -1,4 +1,4 @@
-<div class="container col-6 text-center p-2 my-3">
+<div class="container col-6 text-center p-4 my-3">
 <form [formGroup]="addContactForm" (ngSubmit)="onFormSubmit()">
   <div class="form-group row text-left">
     <label for="fullName" class="col-sm-3 col-form-label text-primary font-weight-bold">Name</label>
@@ -8,6 +8,7 @@
         type="text"
         class="form-control"
         id="fullName"
+        required
       >
     </div>
   </div>
@@ -19,6 +20,7 @@
         type="email"
         class="form-control"
         id="email"
+        required
       >
     </div>
   </div>
@@ -29,7 +31,9 @@
         [formControlName]="'phoneNumber'"
         type="text"
         class="form-control"
-        id="phone">
+        id="phone"
+        required
+      >
     </div>
   </div>
     <div class=" p-0 clearfix mb-2">
@@ -43,6 +47,7 @@
         type="text"
         class="form-control"
         id="country"
+        required
       >
     </div>
   </div>
@@ -54,6 +59,7 @@
         type="text"
         class="form-control"
         id="city"
+        required
       >
     </div>
   </div>
@@ -65,6 +71,7 @@
         type="text"
         class="form-control"
         id="street"
+        required
       >
     </div>
   </div>
@@ -76,6 +83,7 @@
         type="text"
         class="form-control"
         id="house"
+        required
       >
     </div>
   </div>
@@ -87,6 +95,7 @@
         type="text"
         class="form-control"
         id="apartment"
+        required
       >
     </div>
   </div>

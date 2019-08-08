@@ -16,7 +16,7 @@ export class ContactsListComponent implements OnInit {
   searchName: string = '';
   searchPhone: string = '';
 
-  constructor(private dataStoreService: DataStoreService) { }
+  constructor(private dataStoreService: DataStoreService) {}
 
   ngOnInit() {
 
@@ -31,5 +31,6 @@ export class ContactsListComponent implements OnInit {
     this.searchName = searchData.name.value;
     this.searchPhone = searchData.phone.value;
   }
+
 
 }

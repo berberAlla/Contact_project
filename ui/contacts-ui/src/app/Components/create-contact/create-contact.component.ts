@@ -4,6 +4,7 @@ import Contact from "../shared/contact-detail.model";
 import {Address} from "../shared/address.model";
 import {DataStoreService} from "../../Services/data-store-service/data-store.service";
 import {HttpClient} from "@angular/common/http";
+import {ActivatedRoute} from "@angular/router";
 
 interface FormValue {
   name: string;
@@ -24,7 +25,8 @@ interface FormValue {
 export class CreateContactComponent implements OnInit {
 
   constructor(private dataStoreService: DataStoreService,
-              private http: HttpClient) { }
+              private http: HttpClient,
+              private activatedRoute: ActivatedRoute) { }
 
   addContactForm: FormGroup;
   phoneNumbers: string [] = [];
@@ -40,6 +42,10 @@ export class CreateContactComponent implements OnInit {
       street: new FormControl('',[]),
       houseNumber: new FormControl('',[]),
       apartment: new FormControl('',[])
+    })
+
+    this.activatedRoute.url.subscribe((url) => {
+      console.log(url);
     })
   }
 

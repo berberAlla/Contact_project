@@ -3,22 +3,38 @@
     <tbody>
     <tr>
       <td class="text-primary font-weight-bold">Name</td>
-      <td>name</td>
+      <td>{{contactToView.fullName}}</td>
+    </tr>
+    <tr>
+      <td class="text-primary font-weight-bold">Email</td>
+      <td>{{contactToView.email}}</td>
     </tr>
     <tr>
       <td class="text-primary font-weight-bold">Phone</td>
-      <td>phone</td>
+      <td>{{contactToView.phoneNumbers[0]}}</td>
     </tr>
     <tr>
       <td [colSpan]="2" class="text-primary font-weight-bold">Address</td>
     </tr>
     <tr>
       <td class="text-primary font-weight-bold">Country</td>
-      <td>country</td>
+      <td>{{contactToView.addresses[0].country}}</td>
     </tr>
     <tr>
       <td class="text-primary font-weight-bold">City</td>
-      <td>city</td>
+      <td>{{contactToView.addresses[0].city}}</td>
+    </tr>
+    <tr>
+      <td class="text-primary font-weight-bold">Street</td>
+      <td>{{contactToView.addresses[0].street}}</td>
+    </tr>
+    <tr>
+      <td class="text-primary font-weight-bold">House number</td>
+      <td>{{contactToView.addresses[0].houseNumber}}</td>
+    </tr>
+    <tr>
+      <td class="text-primary font-weight-bold">Apartment</td>
+      <td>{{contactToView.addresses[0].apartment}}</td>
     </tr>
     </tbody>
   </table>
@@ -26,7 +42,13 @@
     <button type="button"  class="btn btn-primary float-right  my-0" data-toggle="button" aria-pressed="false" autocomplete="off">
       <i class="fas fa-trash-alt"></i>
     </button>
-    <button type="button"  class="btn btn-primary float-right  my-0" data-toggle="button" aria-pressed="false" autocomplete="off">
+    <button
+      [routerLink]="['../../edit-contact']"
+      type="button"
+      class="btn btn-primary float-right my-0"
+      data-toggle="button"
+      aria-pressed="false"
+      autocomplete="off">
       <i class="fas fa-pencil-alt"></i>
     </button>
   </div>

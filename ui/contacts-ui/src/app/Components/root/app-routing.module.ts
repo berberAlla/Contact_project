@@ -6,8 +6,9 @@ import {CreateContactComponent} from "../create-contact/create-contact.component
 
 const appRoutes: Routes = [
   {path: '', component: ContactsListComponent},
-  {path: 'contact-details', component: ContactDetailsComponent},
-  {path: 'create-contact', component: CreateContactComponent}
+  {path: 'contact-details/:id', component: ContactDetailsComponent},
+  {path: 'create-contact', component: CreateContactComponent},
+  {path: 'edit-contact', component: CreateContactComponent}
 ];
 
 @NgModule({
