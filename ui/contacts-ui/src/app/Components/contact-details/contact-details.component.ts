@@ -23,7 +23,7 @@ export class ContactDetailsComponent implements OnInit {
   ngOnInit() {
     this.dataStoreService.contactsFetched
       .subscribe((contacts: Contact[]) => {
-        this.contacts = this.correctContactsArray(this.dataStoreService.contactsFetched.value);
+        this.contacts = this.dataStoreService.contactsFetched.value;
       });
 
     this.activatedRouted.params
@@ -32,17 +32,6 @@ export class ContactDetailsComponent implements OnInit {
         this.contactToView = this.contacts[this.contactDetailId];
         // console.log(params);
       });
-  }
-
-  correctContactsArray(contacts){
-    let result = [];
-    contacts.forEach((contact) => {
-      console.log(contact);
-      if(!!contact){
-        result.push(contact);
-      }
-    });
-    return result;
   }
 
   onEditContactClick(){

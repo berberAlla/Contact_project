@@ -22,14 +22,12 @@ export class DataStoreService{
     this.http.httpGetContacts()
       .subscribe((contacts) => {
         this.contacts = contacts;
-
         this.contactsFetched.next(contacts);
     });
   }
 
   saveContact(contact: Contact){
     this.http.httpAddContact(contact)
-      .pipe(distinct(),take(1))
       .subscribe((savedContact) => {
         //this.fetchContacts();
         this.contacts.push(contact);
@@ -39,31 +37,17 @@ export class DataStoreService{
 
 
   updateContact(contact: Contact){
-    let realId = 0;
-    this.contacts.forEach((contact) => {
-      if(!!contact && realId <= +this.editedContact.value.id){
-        realId++;
-      }
-    });
-
-    this.http.httpUpdateContact(contact,realId)
+    let id = this.editedContact.value.id + 1;
+    this.http.httpUpdateContact(contact,id)
       .subscribe((updatedContact) => {
        // this.fetchContacts();
-        this.contacts.splice(realId - 1,1,contact);
+        this.contacts.splice(id,1,contact);
         this.contactsFetched.next(this.contacts);
       })
   }
 
   deleteContact(id: number){
-    let realId = 0;
-    this.contacts.forEach((contact) => {
-      if(!!contact && realId <= +id){
-        realId++;
-      }
-    });
-
-    this.http.httpDeleteContact(realId)
-      .pipe(distinct(),take(1))
+    this.http.httpDeleteContact(id + 1)
       .subscribe((deletedContact) => {
         //console.log(deletedContact);
         this.contacts[id] = undefined;

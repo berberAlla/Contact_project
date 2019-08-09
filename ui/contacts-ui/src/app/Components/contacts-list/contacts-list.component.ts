@@ -24,7 +24,7 @@ export class ContactsListComponent implements OnInit {
     this.dataStoreService.fetchContacts();
     this.dataStoreService.contactsFetched
       .subscribe((contacts) => {
-        this.contacts = this.correctContactsArray(this.dataStoreService.contactsFetched.value);
+        this.contacts = this.dataStoreService.contactsFetched.value;
       })
       // .subscribe((contacts) => {
       //   this.contacts = contacts;
@@ -37,16 +37,6 @@ export class ContactsListComponent implements OnInit {
     //   });
   }
 
-  correctContactsArray(contacts){
-    let result = [];
-    contacts.forEach((contact) => {
-      console.log(contact);
-      if(!!contact){
-        result.push(contact);
-      }
-    });
-    return result;
-  }
 
   onSearchClick(searchData){
     this.searchName = searchData.name.value;
