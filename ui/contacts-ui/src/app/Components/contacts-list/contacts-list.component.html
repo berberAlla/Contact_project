@@ -20,8 +20,8 @@
       <tbody >
      <tr  *ngFor="let contact of (contacts | search : searchName : searchPhone); let id = index;"
           class="font-weight-normal" [routerLink]="['contact-details',id]">
-       <td>{{contact.fullName}}</td>
-       <td>{{contact.phoneNumbers.join(', ')}}</td>
+       <td>{{contact?.fullName}}</td>
+       <td>{{contact?.phoneNumbers.join(', ')}}</td>
      </tr>
       </tbody>
     </table>

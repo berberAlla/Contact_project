@@ -10,6 +10,7 @@ import contact.model.entity.User;
 import contact.repository.AddressRepository;
 import contact.repository.PhoneNumberRepository;
 import contact.repository.UserRepository;
+import io.swagger.models.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Service
@@ -105,7 +107,6 @@ public class ContactServiceImpl implements ContactService {
     @Transactional(readOnly = true)
     public List <ContactDto> getAllContacts() {
         List <Long> ids = userRepository.getAllIds();
-
         return ids.stream().map(id -> getContact(id)).collect(Collectors.toList());
     }
 

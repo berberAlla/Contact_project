@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import Contact from "../../Components/shared/contact-detail.model";
-import {ɵStyleData} from "@angular/animations";
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,14 @@ export class HttpService {
 
   httpAddContact(contact){
     return this.httpClient.post("/api/contact",contact);
+  }
+
+  httpUpdateContact(contact,id){
+    return this.httpClient.put(`/api/contact/${id}`,contact);
+  }
+
+  httpDeleteContact(id){
+    return this.httpClient.delete(`/api/contact/${id}`);
   }
 
 

@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import Contact from "../shared/contact-detail.model";
-import {Address} from "../shared/address.model";
 import {DataStoreService} from "../../Services/data-store-service/data-store.service";
-import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute} from "@angular/router";
+import {Router} from "@angular/router";
 
 interface FormValue {
   name: string;
@@ -22,15 +20,19 @@ interface FormValue {
   templateUrl: './create-contact.component.html',
   styleUrls: ['./create-contact.component.css']
 })
-export class CreateContactComponent implements OnInit {
+export class CreateContactComponent implements OnInit,OnDestroy {
 
   constructor(private dataStoreService: DataStoreService,
-              private http: HttpClient,
-              private activatedRoute: ActivatedRoute) { }
+              private router: Router) { }
 
   addContactForm: FormGroup;
   phoneNumbers: string [] = [];
   addresses = [];
+  editMode = false;
+  editedContact: Contact;
+  phoneNumberIndex: number = 0;
+  addressIndex: number = 0;
+
 
   ngOnInit() {
     this.addContactForm = new FormGroup({
@@ -42,13 +44,31 @@ export class CreateContactComponent implements OnInit {
       street: new FormControl('',[]),
       houseNumber: new FormControl('',[]),
       apartment: new FormControl('',[])
-    })
+    });
 
-    this.activatedRoute.url.subscribe((url) => {
-      console.log(url);
-    })
+    this.dataStoreService.editedContact
+      .subscribe((editDetails: {contact: Contact, id: number}) => {
+        this.editedContact = editDetails.contact;
+        if(editDetails.id >= 0){
+          this.editMode = true;
+          // this.editedId = editDetails.id;
+          this.viewEditedContact(this.editedContact);
+        }
+      });
   }
 
+  viewEditedContact(editedContact: Contact){
+    this.addContactForm.setValue({
+      name: editedContact.fullName,
+      email: editedContact.email,
+      phoneNumber: editedContact.phoneNumbers[0],
+      country: editedContact.addresses[0].country,
+      city: editedContact.addresses[0].city,
+      street: editedContact.addresses[0].street,
+      houseNumber: editedContact.addresses[0].houseNumber,
+      apartment: editedContact.addresses[0].apartment
+    })
+  }
   onFormSubmit() {
       const formValue: FormValue = this.addContactForm.value;
       this.addresses.push({
@@ -67,13 +87,34 @@ export class CreateContactComponent implements OnInit {
             this.phoneNumbers,
             this.addresses
             );
+      if(!this.editMode) {
+        this.dataStoreService.saveContact({
+          fullName:  formValue.name,
+          email: formValue.email,
+          phoneNumbers: this.phoneNumbers,
+          addresses: this.addresses
+        });
+      }
+      else{
+        this.dataStoreService.updateContact({
+          fullName: formValue.name,
+          email: formValue.email,
+          phoneNumbers: [formValue.phoneNumber,...this.editedContact.phoneNumbers.slice(1)],
+          addresses: [{
+            country: formValue.country,
+            city: formValue.city,
+            street: formValue.street,
+            houseNumber: formValue.houseNumber,
+            apartment: formValue.apartment
+          },...this.editedContact.addresses.slice(1)]
+        });
+      }
+      this.dataStoreService.editedContact.next({contact: new Contact('','',[],[]),id: -1});
+      this.router.navigate(['']);
+    }
 
-      this.dataStoreService.saveContact({
-        fullName:  formValue.name,
-        email: formValue.email,
-        phoneNumbers: this.phoneNumbers,
-        addresses: this.addresses
-      });
+    ngOnDestroy(): void {
+
     }
 
 }

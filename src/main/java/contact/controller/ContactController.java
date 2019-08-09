@@ -21,6 +21,7 @@ public class ContactController {
 
     @PutMapping("/{id}")
     public void updateContact(@PathVariable("id") Long id, @RequestBody ContactDto contactDto) {
+        System.out.println("updating contact #" + id + " " + contactDto.getPhoneNumbers().size());
         contactService.updateContact(id, contactDto);
     }
 

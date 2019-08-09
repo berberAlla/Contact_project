@@ -3,6 +3,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {ContactsListComponent} from "../contacts-list/contacts-list.component";
 import {ContactDetailsComponent} from "../contact-details/contact-details.component";
 import {CreateContactComponent} from "../create-contact/create-contact.component";
+// import {ContactsResolverService} from "../shared/contacts-resolver.service";
 
 const appRoutes: Routes = [
   {path: '', component: ContactsListComponent},

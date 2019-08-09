@@ -17,22 +17,48 @@ export class ContactDetailsComponent implements OnInit {
   contactToView: Contact;
 
   constructor(private activatedRouted: ActivatedRoute,
-              private dataStoreService: DataStoreService) { }
+              private dataStoreService: DataStoreService,
+              private router: Router) { }
 
   ngOnInit() {
     this.dataStoreService.contactsFetched
       .subscribe((contacts: Contact[]) => {
-        this.contacts = contacts;
+        this.contacts = this.correctContactsArray(this.dataStoreService.contactsFetched.value);
       });
+
     this.activatedRouted.params
       .subscribe((params) => {
         this.contactDetailId = params.id;
         this.contactToView = this.contacts[this.contactDetailId];
         // console.log(params);
       });
-
   }
 
+  correctContactsArray(contacts){
+    let result = [];
+    contacts.forEach((contact) => {
+      console.log(contact);
+      if(!!contact){
+        result.push(contact);
+      }
+    });
+    return result;
+  }
+
+  onEditContactClick(){
+    this.dataStoreService.editedContact
+      .next({contact: this.contactToView, id: this.contactDetailId});
+    this.router.navigate(['../../edit-contact']);
+  }
+
+  onDeleteContactClick(){
+    this.dataStoreService.deleteContact(this.contactDetailId);
+    // this.dataStoreService.fetchContacts().subscribe((contacts) => {
+    //   this.dataStoreService.contactsFetched.next(contacts);
+    //   this.router.navigate(['']);
+    // });
+
+  }
 
 
 }
